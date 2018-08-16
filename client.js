@@ -15,6 +15,9 @@ const processCommand = function(command) {
   if (iniCommand === "clear") {
     console.clear();
     rl.prompt();
+  else if(iniCommand === "exit"){
+    //exit
+    socket.write("shutdown\r\n");
   } else {
     socket.write(`${command}\r\n`);
   }
@@ -70,6 +73,6 @@ socket.on("data", function(data) {
 });
 
 socket.on("close", function() {
-  console.clear();
+  console.log('exiting')
   process.exit(0);
 });
